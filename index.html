@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Performance measurement</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      function measureCriticalRenderingPath() {
+        var t = window.performance.timing,
+          interactive = t.domInteractive - t.domLoading,
+          dcl = t.domContentLoadedEventStart - t.domLoading,
+          complete = t.domComplete - t.domLoading;
+        var stats = document.createElement('p');
+        stats.textContent = 'interactive: ' + interactive + 'ms, ' +
+            'DOMContentLoaded: ' + dcl + 'ms, Complete: ' + complete + 'ms';
+        document.body.appendChild(stats);
+      }
+    </script>
+  </head>
+  <body onload="measureCriticalRenderingPath()">
+  </body>
+</html>
